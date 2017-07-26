@@ -12,5 +12,134 @@
 * 在 app 裡面開一個 MPMediaPlaylist，或者開在使用者的 iCloud music 音樂庫上，當然，新增歌曲也是可以的。
 * 播放 Apple Music 裡面的歌或是 MPMediaPlaylist，或是這個 app 產生的 playlist。
 
+## Getting Started
+
+你需要有 Developer token 才可以繼續存取資料。
+
+當你已經有 developer token 之後，你需要 update `AppleMusicManager.fetchDeveloperToken()` 才行
+
+這個 func 做在 AppleMusicManager 裡面
+
+就是把這一段
+
+func fetchDeveloperToken() -> String? {
+
+// MARK: ADAPT: YOU MUST IMPLEMENT THIS METHOD
+let developerAuthenticationToken: String? = nil
+return developerAuthenticationToken
+}
+
+`注意!`
+不要把 developer token 寫在你的裝置裡面，這樣你可避免換 token 的時候，你需要 update 你的 app。
+
+## Request Authorization
+
+在開始串 API 前，你的 app 需要先 request 權限，才能和 media library 還有 Apple Music.
+
+有兩種不同的權限，你可以依照需求 request，不用兩個都做。
+
+### Media Library Authorization
+
+如果你需要使用使用者本機上的 media library ，那你需要要求 MPMediaLibray 的權限。
+[`MPMediaLibrary`](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary)
+
+而他的權限請求，如下
+[`MPMediaLibraryAuthorizationStatus`](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus)
+
+, you can call 
+[`MPMediaLibrary.authorizationStatus()`](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary/1621282-authorizationstatus)
+
+
+swift
+`guard MPMediaLibrary.authorizationStatus() == .notDetermined else { return }`
+
+
+
+如果你的權限是 `.notDetermined` 那你要用下列的方式去拿請求
+
+
+
+
+[`MPMediaLibrary.requestAuthorization(_:)`](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary/1621276-requestauthorization).
+
+
+MPMediaLibrary.requestAuthorization { (_) in
+NotificationCenter.default.post(name: AuthorizationManager.cloudServiceDidUpdateNotification, object: nil)
+}
+
+
+### Cloud Service Authorization
+
+
+如果你的 app 想要在使用者的 iCloud Music Library 播放 Apple Music 上的歌曲，那你需要要求的權限，就是 
+`SKCloudServiceController` APIs.
+
+[`SKCloudServiceAuthorizationStatus`](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus), you can call [`SKCloudServiceController.authorizationStatus()`](https://developer.apple.com/documentation/storekit/skcloudservicecontroller/1620631-authorizationstatus).
+
+
+swift
+`guard SKCloudServiceController.authorizationStatus() == .notDetermined else { return }`
+
+
+如果你的權限是 `.notDetermined` 那你可以要求 request。
+
+[`SKCloudServiceController.requestAuthorization(_:)`](https://developer.apple.com/documentation/storekit/skcloudservicecontroller/1620609-requestauthorization)
+
+SKCloudServiceController.requestAuthorization { [weak self] (authorizationStatus) in
+switch authorizationStatus {
+case .authorized:
+self?.requestCloudServiceCapabilities()
+self?.requestUserToken()
+default:
+break
+}
+
+NotificationCenter.default.post(name: AuthorizationManager.authorizationDidUpdateNotification, object: nil)
+}
+
+當你的 app 得到了 `.authorized` 狀態，那你可以 query 更多的資訊。
+
+像是
+[`SKCloudServiceCapability`](https://developer.apple.com/documentation/storekit/skcloudservicecapability)
+
+[`requestCapabilities(completionHandler:)`](https://developer.apple.com/documentation/storekit/skcloudservicecontroller/1620610-requestcapabilities)
+
+[`SKCloudServiceController`](https://developer.apple.com/documentation/storekit/skcloudservicecontroller)
+
+
+let controller = SKCloudServiceController()
+controller.requestCapabilities(completionHandler: { (cloudServiceCapability, error) in
+guard error == nil else {
+// Handle Error accordingly, see SKError.h for error codes.
+}
+
+if cloudServiceCapabilities.contains(.addToCloudMusicLibrary) {
+// The application can add items to the iCloud Music Library.
+}
+
+if cloudServiceCapabilities.contains(.musicCatalogPlayback) {
+// The application can playback items from the Apple Music catalog.
+}
+
+if cloudServiceCapabilities.contains(.musicCatalogSubscriptionEligible) {
+// The iTunes Store account is currently elgible for and Apple Music Subscription trial.
+}
+})
+
+
+## Requesting a Music User Token
+
+這個要 iOS 11 才可以用，先跳過
+
+
+
+
+
+
+
+
+
+
+
 
 
