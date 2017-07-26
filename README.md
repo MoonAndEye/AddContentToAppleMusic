@@ -133,6 +133,74 @@ if cloudServiceCapabilities.contains(.musicCatalogSubscriptionEligible) {
 
 
 
+## 在 Media playlist 裡面創建 items
+
+當你的 app 已經有 iCloud Music 的權限時，條就可以開始屬用 MPMediaLibrary API 去創造或是拿 MPMediaPlaylist 的 API
+
+[`MPMediaPlaylist`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist)
+
+如下，這樣的
+[`MPMediaLibrary.getPlaylist(with:creationMetadata:completionHandler:)`](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary/1621273-getplaylist)
+
+你可以創造一個 UUID() 給新的 playlist，這可以讓你在未來重新播放這些曲目
+
+let playlistUUID = UUID()
+
+// Create an instance of `MPMediaPlaylistCreationMetadata`, this represents the metadata to associate with the new playlist.
+var playlistCreationMetadata = MPMediaPlaylistCreationMetadata(name: "My Playlist")
+playlistCreationMetadata.descriptionText = "This playlist contains awesome items."
+
+// Request the new or existing playlist from the device.
+MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistCreationMetadata) { (playlist, error) in
+guard error == nil else {
+// Handle Error accordingly, see MPError.h for error codes.
+}
+
+self.mediaPlaylist = playlist
+}
+
+
+
+當你產生了 MPMediaPlaylist (https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist) 之後，你就可以把 item 加進去。
+
+[`MPMediaPlaylist.addItem(withProductID:completionHandler:)`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist/1618706-additem)
+
+mediaPlaylist.addItem(withProductID: identifier, completionHandler: { (error) in
+guard error == nil else {
+fatalError("An error occurred while adding an item to the playlist: \(error!.localizedDescription)")
+}
+
+NotificationCenter.default.post(name: MediaLibraryManager.libraryDidUpdate, object: nil)
+})
+
+
+## 播放 Apple Music catalog 上面的 items
+
+當你的 app 有權限，而且有 `SKCloudServiceCapability.musicCatalogPlayback` 這個能力之後。你就可以放一首或多首 Apple Music 的歌曲，使用的 api 是
+`MPMusicPlayerController` APIs.
+
+如果想播特定歌曲，而且你知道那一首歌的 ID，你可以這樣用
+[`MPMusicPlayerController.setQueueWithStoreIDs(_:)`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/1624253-setqueuewithstoreids)
+
+-----
+musicPlayerController.setQueue(with: [itemID])
+
+musicPlayerController.play()
+-----
+
+如果是某個 MPMediaPlaylist 你想播放，你可以用下面這樣個 api
+
+[`MPMediaPlaylist`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist) 
+
+[`MPMusicPlayerController.setQueue(with:)`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/1624171-setqueue)
+
+-----
+musicPlayerController.setQueue(with: itemCollection)
+
+musicPlayerController.play()
+
+-----
+
 
 
 
