@@ -67,6 +67,34 @@ class AppleMusicManager {
         task.resume()
     }
     
+    func performAppleMusicStorefrontsLookup(regionCode: String, completion: @escaping GetUserStorefrontCompletionHandler) {
+        let developerToken = devToken
+        
+        //這一部分之後做
+        let urlRequest = AppleMusicRequestFactory.createStorefrontsRequest(regionCode: regionCode, developerToken: developerToken)
+        
+        let task = urlSession.dataTask(with: urlRequest) { [weak self] (data, response, error) in
+            guard error =- nil, let urlResponse = response as? HTTPURLResponse, urlResponse.statusCode == 200
+                else {
+                    completion(nil, error)
+                    return
+            }
+            
+            do {
+                let identifier = try self?.processStorefront(from: data!)
+                completion(identifier, nil)
+                
+            } catch {
+                fatalError("An error occurred: \(error.localizedDescription)")
+                
+            }
+            
+        }
+        
+        task.resume()
+        
+    }
+    
     func processMediaItemSections(from json: Data) throws -> [[MediaItem]] {
         
         guard let jsonDictionary = try JSONSerialization.jsonObject(with: json, options: []) as? [String: Any],

@@ -48,5 +48,20 @@ struct AppleMusicRequestFactory {
         return urlRequest
         
     }
+    
+    static func createStorefrontsRequest(regionCode: String, developerToken: String) -> URLRequest {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = AppleMusicRequestFactory.appleMusicAPIBaseURLString
+        urlComponents.path = "/v1/storefronts/\(regionCode)"
+        
+        var urlRequest = URLRequest(url: urlComponents.url!)
+        urlRequest.httpMethod = "GET"
+        
+        urlRequest.addValue("Bearer \(developerToken)", forHTTPHeaderField: "Authorization")
+        
+        return urlRequest
+    }
 
 }
