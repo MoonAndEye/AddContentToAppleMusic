@@ -24,6 +24,7 @@
 		730D44C01F28B02D00E97DC8 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44BF1F28B02D00E97DC8 /* Artwork.swift */; };
 		73B967D41F29C0F0009C3DA2 /* AuthorizationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B967D31F29C0F0009C3DA2 /* AuthorizationDataSource.swift */; };
 		73B967D61F29CA44009C3DA2 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B967D51F29CA44009C3DA2 /* ImageCacheManager.swift */; };
+		73B967D81F29CC57009C3DA2 /* MediaLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B967D71F29CC57009C3DA2 /* MediaLibraryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		730D44BF1F28B02D00E97DC8 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		73B967D31F29C0F0009C3DA2 /* AuthorizationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationDataSource.swift; sourceTree = "<group>"; };
 		73B967D51F29CA44009C3DA2 /* ImageCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		73B967D71F29CC57009C3DA2 /* MediaLibraryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibraryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				730D44B31F289E1900E97DC8 /* AppleMusicManager.swift */,
 				73B967D31F29C0F0009C3DA2 /* AuthorizationDataSource.swift */,
 				73B967D51F29CA44009C3DA2 /* ImageCacheManager.swift */,
+				73B967D71F29CC57009C3DA2 /* MediaLibraryManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				730D44B91F28A01600E97DC8 /* AppleMusicRequestFactory.swift in Sources */,
 				73B967D61F29CA44009C3DA2 /* ImageCacheManager.swift in Sources */,
 				730D44B41F289E1900E97DC8 /* AppleMusicManager.swift in Sources */,
+				73B967D81F29CC57009C3DA2 /* MediaLibraryManager.swift in Sources */,
 				730D44971F286CA100E97DC8 /* AppDelegate.swift in Sources */,
 				730D44B71F289FEA00E97DC8 /* JSONKeys.swift in Sources */,
 				730D44C01F28B02D00E97DC8 /* Artwork.swift in Sources */,
