@@ -14,6 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    lazy var authorizationManager: AuthorizationManager = {
+        return AuthorizationManager(appleMusicManager: self.appleMusicManager)
+    }()
+    
+    lazy var mediaLibraryManager: MediaLibraryManager = {
+        return MediaLibraryManager(authorizationManager: self.authorizationManager)
+    }()
+    
+    var appleMusicManager = AppleMusicManager()
+    
+    var musicPlayerManager = MusicPlayerManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
