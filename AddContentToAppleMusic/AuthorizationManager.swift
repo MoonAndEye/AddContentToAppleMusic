@@ -19,7 +19,7 @@ class AuthorizationManager: NSObject {
     static let cloudServiceDidUpdateNotification = Notification.Name("cloudServiceDidUpdateNotification")
     
     static let authorizationDidUpdateNotification = Notification.Name("authorizationDidUpdateNotification")
-
+    
     // 可能之後會在其他地方呼叫吧
     static let userTokenUserDefaultsKey = "UserTokenUserDefaultsKey"
     
@@ -124,7 +124,6 @@ class AuthorizationManager: NSObject {
         
         appleMusicManager.performAppleMusicStorefrontsLookup(regionCode: currentRegionCode, completion: completion)
     }
-    
 }
 
 

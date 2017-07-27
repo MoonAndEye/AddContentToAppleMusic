@@ -32,9 +32,9 @@ class AppleMusicManager {
     
     
     
-    func fetchDeeveloperToken() -> String? {
+    func fetchDeveloperToken() -> String? {
         
-        let developerAuthenticationToken: String? = nil
+        let developerAuthenticationToken = devToken
         
         return developerAuthenticationToken
     }
