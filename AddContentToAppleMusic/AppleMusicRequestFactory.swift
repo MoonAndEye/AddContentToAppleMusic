@@ -48,7 +48,5 @@ struct AppleMusicRequestFactory {
         return urlRequest
         
     }
-    
-    
-    
+
 }

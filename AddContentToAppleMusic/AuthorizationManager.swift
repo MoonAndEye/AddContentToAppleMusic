@@ -8,7 +8,7 @@
 
 import Foundation
 import StoreKit
-import UIKit
+import MediaPlayer
 
 @objc
 

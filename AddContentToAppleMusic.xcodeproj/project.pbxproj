@@ -19,6 +19,9 @@
 		730D44B41F289E1900E97DC8 /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44B31F289E1900E97DC8 /* AppleMusicManager.swift */; };
 		730D44B71F289FEA00E97DC8 /* JSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44B61F289FEA00E97DC8 /* JSONKeys.swift */; };
 		730D44B91F28A01600E97DC8 /* AppleMusicRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44B81F28A01600E97DC8 /* AppleMusicRequestFactory.swift */; };
+		730D44BC1F28AFF200E97DC8 /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44BB1F28AFF200E97DC8 /* SerializationError.swift */; };
+		730D44BE1F28B00700E97DC8 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44BD1F28B00700E97DC8 /* MediaItem.swift */; };
+		730D44C01F28B02D00E97DC8 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D44BF1F28B02D00E97DC8 /* Artwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		730D44B31F289E1900E97DC8 /* AppleMusicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicManager.swift; sourceTree = "<group>"; };
 		730D44B61F289FEA00E97DC8 /* JSONKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONKeys.swift; sourceTree = "<group>"; };
 		730D44B81F28A01600E97DC8 /* AppleMusicRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicRequestFactory.swift; sourceTree = "<group>"; };
+		730D44BB1F28AFF200E97DC8 /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
+		730D44BD1F28B00700E97DC8 /* MediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		730D44BF1F28B02D00E97DC8 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,7 @@
 		730D44951F286CA100E97DC8 /* AddContentToAppleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				730D44BA1F28AFC800E97DC8 /* Model */,
 				730D44B51F289FD800E97DC8 /* Utility */,
 				730D44961F286CA100E97DC8 /* AppDelegate.swift */,
 				730D44981F286CA100E97DC8 /* ViewController.swift */,
@@ -91,6 +98,16 @@
 				730D44B81F28A01600E97DC8 /* AppleMusicRequestFactory.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		730D44BA1F28AFC800E97DC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				730D44BB1F28AFF200E97DC8 /* SerializationError.swift */,
+				730D44BD1F28B00700E97DC8 /* MediaItem.swift */,
+				730D44BF1F28B02D00E97DC8 /* Artwork.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,10 +188,13 @@
 				730D44B21F289A2D00E97DC8 /* AuthorizationManager.swift in Sources */,
 				730D44B01F288C5B00E97DC8 /* tkinfor.swift in Sources */,
 				730D44AC1F28750000E97DC8 /* README.md in Sources */,
+				730D44BC1F28AFF200E97DC8 /* SerializationError.swift in Sources */,
 				730D44B91F28A01600E97DC8 /* AppleMusicRequestFactory.swift in Sources */,
 				730D44B41F289E1900E97DC8 /* AppleMusicManager.swift in Sources */,
 				730D44971F286CA100E97DC8 /* AppDelegate.swift in Sources */,
 				730D44B71F289FEA00E97DC8 /* JSONKeys.swift in Sources */,
+				730D44C01F28B02D00E97DC8 /* Artwork.swift in Sources */,
+				730D44BE1F28B00700E97DC8 /* MediaItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
