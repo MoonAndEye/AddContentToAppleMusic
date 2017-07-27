@@ -74,7 +74,7 @@ class AppleMusicManager {
         let urlRequest = AppleMusicRequestFactory.createStorefrontsRequest(regionCode: regionCode, developerToken: developerToken)
         
         let task = urlSession.dataTask(with: urlRequest) { [weak self] (data, response, error) in
-            guard error =- nil, let urlResponse = response as? HTTPURLResponse, urlResponse.statusCode == 200
+            guard error == nil, let urlResponse = response as? HTTPURLResponse, urlResponse.statusCode == 200
                 else {
                     completion(nil, error)
                     return
